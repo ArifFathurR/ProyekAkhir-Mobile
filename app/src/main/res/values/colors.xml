@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="blue">#002B6A</color>
+    <color name="soft_blue_icon">#007AFF</color>
+    <color name="soft_blue">#3303B2E2</color>
+    <color name="green">#0EAF26</color>
+    <color name="soft_green">#3346D15B</color>
+    <color name="orange">#E27303</color>
+    <color name="soft_orange">#33CE952B</color>
+    <color name="btn_color">#0093DD</color>
+</resources>
