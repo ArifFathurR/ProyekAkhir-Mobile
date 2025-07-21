@@ -1,4 +1,6 @@
 package com.example.proyekakhir
+import com.example.proyekakhir.auth.LoginRequest
+import com.example.proyekakhir.auth.LoginResponse
 import retrofit2.Call
 import retrofit2.http.*
 

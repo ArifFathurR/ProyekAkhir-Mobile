@@ -1,13 +1,18 @@
-package com.example.proyekakhir
+package com.example.proyekakhir.auth
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.proyekakhir.ApiClient
+import com.example.proyekakhir.auth.LoginRequest
+import com.example.proyekakhir.auth.LoginResponse
+import com.example.proyekakhir.MainActivity
 import com.example.proyekakhir.databinding.ActivityLoginBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
 

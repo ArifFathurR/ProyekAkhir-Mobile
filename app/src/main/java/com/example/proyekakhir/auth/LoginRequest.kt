@@ -1,4 +1,4 @@
-package com.example.proyekakhir
+package com.example.proyekakhir.auth
 
 data class LoginRequest(
     val email: String,
