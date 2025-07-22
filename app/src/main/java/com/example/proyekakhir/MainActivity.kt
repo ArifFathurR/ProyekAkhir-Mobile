@@ -1,11 +1,14 @@
 package com.example.proyekakhir
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.proyekakhir.auth.LoginActivity
 import com.example.proyekakhir.databinding.ActivityMainBinding
+import com.example.proyekakhir.model.KegiatanResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,21 +32,7 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-//        // Ambil profil user dari API
-//        ApiClient.instance.getProfile("Bearer $token").enqueue(object : Callback<User> {
-//            override fun onResponse(call: Call<User>, response: Response<User>) {
-//                if (response.isSuccessful) {
-//                    val user = response.body()
-//                    binding.tvWelcome.text = "Halo, ${user?.name}"
-//                } else {
-//                    Toast.makeText(this@MainActivity, "Gagal mengambil data profil", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<User>, t: Throwable) {
-//                Toast.makeText(this@MainActivity, "Kesalahan: ${t.message}", Toast.LENGTH_SHORT).show()
-//            }
-//        })
+        fetchKegiatan()
 
         // Tombol Logout
         binding.btnLogout.setOnClickListener {
@@ -59,6 +48,38 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(this@MainActivity, "Gagal logout: ${t.message}", Toast.LENGTH_SHORT).show()
                 }
             })
+        }
+    }
+
+    private fun fetchKegiatan() {
+        ApiClient.instance.getKegiatan("Bearer $token").enqueue(object : Callback<KegiatanResponse> {
+            override fun onResponse(call: Call<KegiatanResponse>, response: Response<KegiatanResponse>) {
+                if (response.isSuccessful) {
+                    val kegiatanList = response.body()?.kegiatan ?: emptyList()
+                    val adapter = KegiatanAdapter(kegiatanList) { fileUrl ->
+                        openPdf(fileUrl)
+                    }
+                    binding.recyclerView.layoutManager = LinearLayoutManager(this@MainActivity)
+                    binding.recyclerView.adapter = adapter
+                } else {
+                    Toast.makeText(this@MainActivity, "Gagal memuat data", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<KegiatanResponse>, t: Throwable) {
+                Toast.makeText(this@MainActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun openPdf(url: String) {
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.setDataAndType(Uri.parse(url), "application/pdf")
+        intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY or Intent.FLAG_GRANT_READ_URI_PERMISSION
+        try {
+            startActivity(intent)
+        } catch (e: Exception) {
+            Toast.makeText(this, "Tidak ada aplikasi PDF terpasang", Toast.LENGTH_SHORT).show()
         }
     }
 }

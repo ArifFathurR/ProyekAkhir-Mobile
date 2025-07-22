@@ -1,4 +1,4 @@
-package com.example.proyekakhir.auth
+package com.example.proyekakhir.model
 
 data class User(
     val id: Int,
