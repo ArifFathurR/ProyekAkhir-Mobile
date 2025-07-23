@@ -28,6 +28,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"/>
+        <activity android:name=".DokumentasiSayaActivity"/>
     </application>
 
 </manifest>

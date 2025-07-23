@@ -24,7 +24,10 @@ class MainActivity : AppCompatActivity() {
 
         // Ambil token dari SharedPreferences
         val shared = getSharedPreferences("APP", MODE_PRIVATE)
+        val userName = shared.getString("USER_NAME", "Pengguna")
         token = shared.getString("TOKEN", null)
+
+        binding.txUsername.text = "$userName"
 
         if (token.isNullOrEmpty()) {
             startActivity(Intent(this, LoginActivity::class.java))
@@ -33,6 +36,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         fetchKegiatan()
+
+        binding.btnBuatDokumentasi.setOnClickListener {
+            val intent = Intent(this, DokumentasiSayaActivity::class.java)
+            startActivity(intent)
+        }
 
         // Tombol Logout
         binding.btnLogout.setOnClickListener {
