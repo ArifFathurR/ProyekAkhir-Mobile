@@ -3,9 +3,9 @@ package com.example.proyekakhir
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.proyekakhir.api.ApiClient
 import com.example.proyekakhir.auth.LoginActivity
 import com.example.proyekakhir.databinding.DokumentasiKegiatanSayaBinding
@@ -24,10 +24,7 @@ class DokumentasiSayaActivity : AppCompatActivity() {
         binding = DokumentasiKegiatanSayaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Tombol kembali
         binding.btnKembali.setOnClickListener { finish() }
-
-        // Tombol tambah
         binding.btnTambah.setOnClickListener {
             startActivity(Intent(this, TambahDokumentasiActivity::class.java))
         }
@@ -42,7 +39,6 @@ class DokumentasiSayaActivity : AppCompatActivity() {
     }
 
     private fun setupSwipeRefresh() {
-        // Pastikan layout XML menggunakan <androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
         binding.swipeRefresh.setOnRefreshListener {
             fetchDokumentasi()
         }
@@ -69,7 +65,6 @@ class DokumentasiSayaActivity : AppCompatActivity() {
                 ) {
                     binding.swipeRefresh.isRefreshing = false
                     if (response.isSuccessful) {
-                        // Urutkan data berdasarkan ID descending (terbaru di atas)
                         val list = response.body()?.dokumentasi
                             ?.sortedByDescending { it.id } ?: emptyList()
 
@@ -82,31 +77,48 @@ class DokumentasiSayaActivity : AppCompatActivity() {
                                     Toast.LENGTH_SHORT
                                 ).show()
                             },
-                            onDeleteClick = { dokumentasi ->
-                                Toast.makeText(
-                                    this@DokumentasiSayaActivity,
-                                    "Delete ${dokumentasi.id}",
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                            onDeleteClick = { dokumentasi, position ->
+                                confirmDelete(token, dokumentasi.id, position)
                             }
                         )
                         binding.recylerView.adapter = adapter
                     } else {
-                        Toast.makeText(
-                            this@DokumentasiSayaActivity,
-                            "Gagal memuat data",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        Toast.makeText(this@DokumentasiSayaActivity, "Gagal memuat data", Toast.LENGTH_SHORT).show()
                     }
                 }
 
                 override fun onFailure(call: Call<DokumentasiResponse>, t: Throwable) {
                     binding.swipeRefresh.isRefreshing = false
-                    Toast.makeText(
-                        this@DokumentasiSayaActivity,
-                        "Error: ${t.message}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Toast.makeText(this@DokumentasiSayaActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
+                }
+            })
+    }
+
+    private fun confirmDelete(token: String, id: Int, position: Int) {
+        AlertDialog.Builder(this)
+            .setTitle("Konfirmasi")
+            .setMessage("Apakah Anda yakin ingin menghapus dokumentasi ini?")
+            .setPositiveButton("Hapus") { _, _ ->
+                deleteDokumentasi(token, id, position)
+            }
+            .setNegativeButton("Batal", null)
+            .show()
+    }
+
+    private fun deleteDokumentasi(token: String, id: Int, position: Int) {
+        ApiClient.instance.deleteDokumentasi("Bearer $token", id)
+            .enqueue(object : Callback<Void> {
+                override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                    if (response.isSuccessful) {
+                        Toast.makeText(this@DokumentasiSayaActivity, "Berhasil dihapus", Toast.LENGTH_SHORT).show()
+                        adapter.removeItem(position)
+                    } else {
+                        Toast.makeText(this@DokumentasiSayaActivity, "Gagal menghapus data", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<Void>, t: Throwable) {
+                    Toast.makeText(this@DokumentasiSayaActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
                 }
             })
     }

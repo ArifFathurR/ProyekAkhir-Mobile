@@ -20,7 +20,7 @@ data class Dokumentasi(
     val id: Int,
     @SerializedName("kegiatan_id") val kegiatanId: Int,
     @SerializedName("undangan_id") val undanganId: Int,
-    val notulensi: String?,
+    @SerializedName("notulensi") val notulensi: String?,
     @SerializedName("link_zoom") val linkZoom: String?,
     @SerializedName("link_materi") val linkMateri: String?,
     @SerializedName("foto_dokumentasi") val fotoDokumentasi: List<FotoDokumentasi>?,

@@ -33,7 +33,9 @@ interface ApiService {
     fun createDokumentasi(
         @Part("undangan_id") undanganId: RequestBody,
         @Part("kegiatan_id") kegiatanId: RequestBody,
-        @Part("deskripsi") deskripsi: RequestBody,
+        @Part("notulensi") deskripsi: RequestBody,
+        @Part("link_zoom") link_zoom: RequestBody,
+        @Part("link_materi") link_materi: RequestBody,
         @Part foto: List<MultipartBody.Part>?,
         @Header("Authorization") token: String
     ): Call<Dokumentasi>
@@ -44,11 +46,15 @@ interface ApiService {
         @Path("id") id: Int,
         @Part("undangan_id") undanganId: RequestBody,
         @Part("kegiatan_id") kegiatanId: RequestBody,
-        @Part("deskripsi") deskripsi: RequestBody,
+        @Part("notulensi") deskripsi: RequestBody,
         @Part foto: List<MultipartBody.Part>?
     ): Call<Dokumentasi>
 
-    @DELETE("api/dokumentasi/{id}")
-    fun deleteDokumentasi(@Path("id") id: Int): Call<Void>
+    @DELETE("dokumentasi/{id}")
+    fun deleteDokumentasi(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int
+    ): Call<Void>
+
 
 }

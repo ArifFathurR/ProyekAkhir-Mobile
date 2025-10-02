@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.proyekakhir.ApiClient
+import com.example.proyekakhir.api.ApiClient
 import com.example.proyekakhir.MainActivity
 import com.example.proyekakhir.databinding.ActivityLoginBinding
 import retrofit2.Call

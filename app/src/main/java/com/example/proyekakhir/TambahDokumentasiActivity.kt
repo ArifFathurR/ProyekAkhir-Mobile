@@ -158,6 +158,8 @@ class TambahDokumentasiActivity : AppCompatActivity() {
             undanganBody,
             kegiatanBody,
             deskripsiBody,
+            linkZoomBody,
+            linkMateriBody,
             fotoPartsFinal,
             "Bearer $token"
         ).enqueue(object : Callback<Dokumentasi> {

@@ -10,25 +10,20 @@ import com.squareup.picasso.Picasso
 class DokumentasiSayaAdapter(
     private var dokumentasiList: MutableList<Dokumentasi>,
     private val onEditClick: (Dokumentasi) -> Unit,
-    private val onDeleteClick: (Dokumentasi) -> Unit
+    private val onDeleteClick: (Dokumentasi, Int) -> Unit // kirim id + posisi
 ) : RecyclerView.Adapter<DokumentasiSayaAdapter.ViewHolder>() {
 
-    // URL dasar storage Laravel
     private val baseStorageUrl = "http://10.0.2.2:8000/storage/"
 
     inner class ViewHolder(private val binding: ItemDokumentasiKegiatanSayaBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(dokumentasi: Dokumentasi) {
-            // Tampilkan judul undangan jika ada
+        fun bind(dokumentasi: Dokumentasi, position: Int) {
             binding.judulRapat.text = dokumentasi.undangan?.judul ?: "-"
-
-            // Tampilkan deskripsi kegiatan atau notulensi
             binding.textView.text = dokumentasi.notulensi ?: "-"
 
-            // Load gambar pertama dari fotoDokumentasi
             if (!dokumentasi.fotoDokumentasi.isNullOrEmpty()) {
-                val fotoPath = dokumentasi.fotoDokumentasi[0].foto // misal: foto_dokumentasi/xxx.png
+                val fotoPath = dokumentasi.fotoDokumentasi[0].foto
                 val fullUrl = "$baseStorageUrl$fotoPath"
 
                 Picasso.get()
@@ -40,9 +35,8 @@ class DokumentasiSayaAdapter(
                 binding.gambar.setImageResource(R.drawable.default_image)
             }
 
-            // Tombol edit dan delete
             binding.btnEdit.setOnClickListener { onEditClick(dokumentasi) }
-            binding.btnDelete.setOnClickListener { onDeleteClick(dokumentasi) }
+            binding.btnDelete.setOnClickListener { onDeleteClick(dokumentasi, position) }
         }
     }
 
@@ -55,12 +49,20 @@ class DokumentasiSayaAdapter(
     override fun getItemCount(): Int = dokumentasiList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(dokumentasiList[position])
+        holder.bind(dokumentasiList[position], position)
     }
 
     fun updateData(newList: List<Dokumentasi>) {
         dokumentasiList.clear()
         dokumentasiList.addAll(newList)
         notifyDataSetChanged()
+    }
+
+    fun removeItem(position: Int) {
+        if (position in dokumentasiList.indices) {
+            dokumentasiList.removeAt(position)
+            notifyItemRemoved(position)
+            notifyItemRangeChanged(position, dokumentasiList.size)
+        }
     }
 }
