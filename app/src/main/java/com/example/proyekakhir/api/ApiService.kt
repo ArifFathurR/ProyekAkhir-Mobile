@@ -7,6 +7,7 @@ import retrofit2.http.*
 import com.example.proyekakhir.model.Dokumentasi
 import com.example.proyekakhir.model.KegiatanResponse
 import com.example.proyekakhir.model.DokumentasiResponse
+import com.example.proyekakhir.model.DokumentasiSelesaiResponse
 import com.example.proyekakhir.model.DropdownDokumentasiResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -72,10 +73,8 @@ interface ApiService {
         @Path("penerima_id") penerimaId: Int
     ): Call<DetailDokumentasiResponse>
 
-    @GET("/dokumentasi/selesai")
+    @GET("dokumentasi/selesai")
     fun getDokumentasiSelesai(
         @Header("Authorization") token: String
-    ): Call<DokumentasiResponse>
-
-
+    ): Call<DokumentasiSelesaiResponse>
 }

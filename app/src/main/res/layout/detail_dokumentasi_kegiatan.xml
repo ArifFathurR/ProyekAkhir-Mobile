@@ -146,7 +146,7 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginStart="10dp"
                     android:orientation="horizontal"
-                    tools:listitem="@layout/item_foto"
+                    tools:listitem="@layout/item_foto_detail"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
                 <TextView

@@ -33,6 +33,7 @@
         <activity android:name=".EditDokumentasiActivity"/>
         <activity android:name=".DetailDokumentasiActivity"/>
         <activity android:name=".LihatDokumentasi"/>
+        <activity android:name=".LihatDokumentasiDetail"/>
     </application>
 
 </manifest>

@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.proyekakhir.api.ApiClient
-import com.example.proyekakhir.databinding.ItemFotoBinding
+import com.example.proyekakhir.databinding.ItemFotoDetailBinding
 import com.example.proyekakhir.model.FotoDetail
 
 class FotoAdapterDetail(
@@ -13,11 +13,11 @@ class FotoAdapterDetail(
     private val onFotoClick: (FotoDetail, Int) -> Unit
 ) : RecyclerView.Adapter<FotoAdapterDetail.FotoViewHolder>() {
 
-    inner class FotoViewHolder(val binding: ItemFotoBinding) :
+    inner class FotoViewHolder(val binding: ItemFotoDetailBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FotoViewHolder {
-        val binding = ItemFotoBinding.inflate(
+        val binding = ItemFotoDetailBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
