@@ -33,8 +33,11 @@ class FotoAdapter(
                 .centerCrop()
                 .into(holder.imgFoto)
             is String -> {
-                val fullUrl = if (item.startsWith("http")) item
-                else "http://10.0.2.2:8000/storage/$item"
+                // Jika item mengandung "#", ambil bagian setelahnya (path sebenarnya)
+                val path = if (item.contains("#")) item.substringAfter("#") else item
+                val fullUrl = if (path.startsWith("http")) path
+                else "http://10.0.2.2:8000/storage/$path"
+
                 Glide.with(holder.itemView.context)
                     .load(fullUrl)
                     .centerCrop()

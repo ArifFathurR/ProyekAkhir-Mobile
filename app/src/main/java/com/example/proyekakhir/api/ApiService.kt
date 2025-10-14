@@ -1,6 +1,7 @@
 package com.example.proyekakhir.api
 import com.example.proyekakhir.auth.LoginRequest
 import com.example.proyekakhir.auth.LoginResponse
+import com.example.proyekakhir.model.DetailDokumentasiResponse
 import retrofit2.Call
 import retrofit2.http.*
 import com.example.proyekakhir.model.Dokumentasi
@@ -59,6 +60,22 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Path("id") id: Int
     ): Call<Void>
+
+    // Endpoint kegiatan selesai
+    @GET("pegawai/kegiatan/selesai")
+    fun getKegiatanSelesai(@Header("Authorization") token: String): Call<KegiatanResponse>
+
+    // Endpoint detail dokumentasi berdasarkan penerima_id
+    @GET("pegawai/dokumentasi/{penerima_id}")
+    fun getDetailDokumentasi(
+        @Header("Authorization") token: String,
+        @Path("penerima_id") penerimaId: Int
+    ): Call<DetailDokumentasiResponse>
+
+    @GET("/dokumentasi/selesai")
+    fun getDokumentasiSelesai(
+        @Header("Authorization") token: String
+    ): Call<DokumentasiResponse>
 
 
 }

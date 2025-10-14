@@ -31,6 +31,8 @@
         <activity android:name=".DokumentasiSayaActivity"/>
         <activity android:name=".TambahDokumentasiActivity"/>
         <activity android:name=".EditDokumentasiActivity"/>
+        <activity android:name=".DetailDokumentasiActivity"/>
+        <activity android:name=".LihatDokumentasi"/>
     </application>
 
 </manifest>

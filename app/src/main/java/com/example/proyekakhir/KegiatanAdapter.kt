@@ -7,15 +7,22 @@ import com.example.proyekakhir.databinding.ItemKegiatanBinding
 import com.example.proyekakhir.model.Kegiatan
 
 class KegiatanAdapter(
-    private val list: List<Kegiatan>,
-    private val onUndanganClick: (String) -> Unit
+    private var list: List<Kegiatan>,
+    private val onUndanganClick: (String) -> Unit,
+    private val onDetailClick: (Int) -> Unit
 ) : RecyclerView.Adapter<KegiatanAdapter.KegiatanViewHolder>() {
+
+    private var isSelesai = false
 
     inner class KegiatanViewHolder(val binding: ItemKegiatanBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): KegiatanViewHolder {
-        val binding = ItemKegiatanBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemKegiatanBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
         return KegiatanViewHolder(binding)
     }
 
@@ -24,11 +31,26 @@ class KegiatanAdapter(
         with(holder.binding) {
             tanggal.text = item.tanggal
             subKegiatan.text = item.sub_kegiatan
-            btnLihat.setOnClickListener {
-                onUndanganClick(item.file_undangan)
+
+            if (isSelesai) {
+                btnLihat.text = "Detail"
+                btnLihat.setOnClickListener {
+                    onDetailClick(item.id)
+                }
+            } else {
+                btnLihat.text = "Lihat Detail"
+                btnLihat.setOnClickListener {
+                    onUndanganClick(item.file_undangan)
+                }
             }
         }
     }
 
     override fun getItemCount(): Int = list.size
+
+    fun updateData(newList: List<Kegiatan>, isSelesaiTab: Boolean) {
+        list = newList
+        isSelesai = isSelesaiTab
+        notifyDataSetChanged()
+    }
 }

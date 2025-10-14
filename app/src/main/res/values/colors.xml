@@ -11,4 +11,11 @@
     <color name="soft_orange">#33CE952B</color>
     <color name="btn_color">#0093DD</color>
     <color name="red">#9E0315</color>
+
+    <!-- Tab colors -->
+    <color name="tab_active_bg">#E3F2FD</color>
+    <color name="tab_inactive_bg">#F5F5F5</color>
+    <color name="tab_active_text">#1976D2</color>
+    <color name="tab_inactive_text">#757575</color>
+
 </resources>
