@@ -30,6 +30,7 @@
             android:exported="true"/>
         <activity android:name=".DokumentasiSayaActivity"/>
         <activity android:name=".TambahDokumentasiActivity"/>
+        <activity android:name=".EditDokumentasiActivity"/>
     </application>
 
 </manifest>

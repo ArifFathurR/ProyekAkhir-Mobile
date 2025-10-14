@@ -71,11 +71,9 @@ class DokumentasiSayaActivity : AppCompatActivity() {
                         adapter = DokumentasiSayaAdapter(
                             list.toMutableList(),
                             onEditClick = { dokumentasi ->
-                                Toast.makeText(
-                                    this@DokumentasiSayaActivity,
-                                    "Edit ${dokumentasi.id}",
-                                    Toast.LENGTH_SHORT
-                                ).show()
+                                val intent = Intent(this@DokumentasiSayaActivity, EditDokumentasiActivity::class.java)
+                                intent.putExtra("id", dokumentasi.id) // kirim ID dokumentasi
+                                startActivity(intent)
                             },
                             onDeleteClick = { dokumentasi, position ->
                                 confirmDelete(token, dokumentasi.id, position)

@@ -41,13 +41,17 @@ interface ApiService {
     ): Call<Dokumentasi>
 
     @Multipart
-    @POST("dokumentasi/{id}?_method=POST")
+    @POST("dokumentasi/{id}")
     fun updateDokumentasi(
         @Path("id") id: Int,
         @Part("undangan_id") undanganId: RequestBody,
         @Part("kegiatan_id") kegiatanId: RequestBody,
         @Part("notulensi") deskripsi: RequestBody,
-        @Part foto: List<MultipartBody.Part>?
+        @Part("link_zoom") link_zoom: RequestBody,
+        @Part("link_materi") link_materi: RequestBody,
+        @Part foto: List<MultipartBody.Part>?,
+        @Part("deleted_foto_ids") deleted_foto_ids: RequestBody,
+        @Header("Authorization") token: String
     ): Call<Dokumentasi>
 
     @DELETE("dokumentasi/{id}")
