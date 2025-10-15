@@ -107,6 +107,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/btn_presensi"
                 android:layout_width="85dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"

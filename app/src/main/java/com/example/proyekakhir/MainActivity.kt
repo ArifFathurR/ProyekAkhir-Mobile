@@ -60,6 +60,12 @@ class MainActivity : AppCompatActivity() {
             fetchKegiatan()
         }
 
+        //Presensi
+        binding.btnPresensi.setOnClickListener{
+            val intent = Intent(this, Presensi::class.java)
+            startActivity(intent)
+        }
+
         binding.tabSelesai.setOnClickListener {
             currentTab = "selesai"
             setActiveTab(false)

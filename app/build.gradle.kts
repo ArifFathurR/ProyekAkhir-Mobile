@@ -57,6 +57,8 @@ dependencies {
     implementation ("com.github.bumptech.glide:glide:4.16.0")
     implementation ("com.squareup.picasso:picasso:2.8")
     implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.2.0-alpha01")
+    implementation("com.github.gcacace:signature-pad:1.3.1")
+
 
 
 }

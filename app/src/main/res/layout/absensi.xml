@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/blue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+        <ImageView
+            android:id="@+id/btn_kembali"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/ic_back"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:text="Isi Presensi"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn_kembali"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <!-- Content -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Area Tanda Tangan -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Area Tanda Tangan"
+                android:textSize="14sp"
+                android:textColor="@color/blue"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="8dp">
+
+                <!-- Signature Pad Library -->
+                <com.github.gcacace.signaturepad.views.SignaturePad
+                    android:id="@+id/signaturePad"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"
+                    app:penColor="@color/blue"
+                    app:penMinWidth="3dp"
+                    app:penMaxWidth="7dp"
+                    app:velocityFilterWeight="0.9" />
+
+                <!-- Clear Button (Bersihkan) -->
+                <TextView
+                    android:id="@+id/btnClearSignature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_margin="8dp"
+                    android:text="Bersihkan"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="6dp"
+                    android:background="@color/blue"
+                    android:clickable="true"
+                    android:focusable="true" />
+            </RelativeLayout>
+
+            <!-- Informasi Lokasi -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Informasi Lokasi"
+                android:textSize="14sp"
+                android:textColor="@color/blue"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Latitude Input -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Latitude"
+                android:textSize="13sp"
+                android:textColor="@color/tab_inactive_text"
+                android:layout_marginBottom="6dp" />
+
+            <EditText
+                android:id="@+id/etLatitude"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Belum diambil"
+                android:textColorHint="@color/tab_inactive_text"
+                android:textSize="14sp"
+                android:textColor="@color/blue"
+                android:paddingHorizontal="12dp"
+                android:background="@color/white"
+                android:inputType="numberDecimal|numberSigned"
+                android:enabled="false"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Longitude Input -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Longitude"
+                android:textSize="13sp"
+                android:textColor="@color/tab_inactive_text"
+                android:layout_marginBottom="6dp" />
+
+            <EditText
+                android:id="@+id/etLongitude"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:hint="Belum diambil"
+                android:textColorHint="@color/tab_inactive_text"
+                android:textSize="14sp"
+                android:textColor="@color/blue"
+                android:paddingHorizontal="12dp"
+                android:background="@color/white"
+                android:inputType="numberDecimal|numberSigned"
+                android:enabled="false"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Ambil Lokasi Button -->
+            <Button
+                android:id="@+id/btnGetLocation"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="📍 Ambil Lokasi"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:backgroundTint="@color/blue"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:background="@color/white"
+        android:elevation="4dp">
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="Batal"
+            android:backgroundTint="@color/blue"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginEnd="8dp" />
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/blue"
+            android:text="✓ Simpan TTD"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+</LinearLayout>

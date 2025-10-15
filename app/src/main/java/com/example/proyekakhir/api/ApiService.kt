@@ -9,6 +9,7 @@ import com.example.proyekakhir.model.KegiatanResponse
 import com.example.proyekakhir.model.DokumentasiResponse
 import com.example.proyekakhir.model.DokumentasiSelesaiResponse
 import com.example.proyekakhir.model.DropdownDokumentasiResponse
+import com.example.proyekakhir.model.TtdResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 interface ApiService {
@@ -23,6 +24,9 @@ interface ApiService {
 
     @GET("pegawai/kegiatan")
     fun getKegiatan(@Header("Authorization") token: String): Call<KegiatanResponse>
+
+    @GET("pegawai/kegiatan/sedang")
+    fun getKegiatanSedang(@Header("Authorization") token: String): Call<KegiatanResponse>
 
     @GET("dokumentasi")
     fun getDokumentasiSaya(@Header("Authorization") token: String): Call<DokumentasiResponse>
@@ -77,4 +81,16 @@ interface ApiService {
     fun getDokumentasiSelesai(
         @Header("Authorization") token: String
     ): Call<DokumentasiSelesaiResponse>
+
+    // 🔹 Kirim tanda tangan (TTD)
+    @FormUrlEncoded
+    @POST("pegawai/ttd")
+    fun storeTtd(
+        @Header("Authorization") token: String,
+        @Field("penerima_id") penerimaId: Int,
+        @Field("ttd") ttd: String,
+        @Field("latitude") latitude: Double?,
+        @Field("longitude") longitude: Double?
+    ): Call<TtdResponse>
+
 }

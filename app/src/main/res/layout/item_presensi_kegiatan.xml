@@ -31,6 +31,7 @@
             />
 
         <Button
+            android:id="@+id/btn_isi_presensi"
             android:layout_width="100dp"
             android:layout_height="35dp"
             android:text="Isi Presensi"
