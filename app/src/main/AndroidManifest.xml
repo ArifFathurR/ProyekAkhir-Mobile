@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
 
     <application
@@ -35,6 +37,7 @@
         <activity android:name=".LihatDokumentasi"/>
         <activity android:name=".LihatDokumentasiDetail"/>
         <activity android:name=".Presensi"/>
+        <activity android:name=".IsiPresensiActivity"/>
     </application>
 
 </manifest>
