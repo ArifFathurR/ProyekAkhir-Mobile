@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
 
         //Lihat Dokumentasi
         binding.btnLihatDokumentasi.setOnClickListener {
-            val intent = Intent(this, LihatDokumentasi::class.java)
+            val intent = Intent(this, KegiatanSelesai::class.java)
             startActivity(intent)
         }
 
@@ -90,9 +90,9 @@ class MainActivity : AppCompatActivity() {
             onUndanganClick = { fileUrl ->
                 openPdf(fileUrl)
             },
-            onDetailClick = { penerimaId ->
-                val intent = Intent(this, DetailDokumentasiActivity::class.java)
-                intent.putExtra("PENERIMA_ID", penerimaId)
+            onDetailClick = { id ->
+                val intent = Intent(this, LihatDokumentasi::class.java)
+                intent.putExtra("id", id)
                 startActivity(intent)
             }
         )

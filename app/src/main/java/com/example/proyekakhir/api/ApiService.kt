@@ -79,9 +79,10 @@ interface ApiService {
         @Path("penerima_id") penerimaId: Int
     ): Call<DetailDokumentasiResponse>
 
-    @GET("dokumentasi/selesai")
+    @GET("dokumentasi/selesai/{id}")
     fun getDokumentasiSelesai(
-        @Header("Authorization") token: String
+        @Header("Authorization") token: String,
+        @Path("id") id: Int
     ): Call<DokumentasiSelesaiResponse>
 
     // 🔹 Kirim tanda tangan (TTD)
@@ -95,8 +96,8 @@ interface ApiService {
         @Field("longitude") longitude: Double?
     ): Call<TtdResponse>
 
-    @GET("pegawai/semua-kegiatan")
-    fun getAllKegiatan(@Header("Authorization") token: String): Call<AllKegiatanResponse>
+//    @GET("pegawai/semua-kegiatan")
+//    fun getAllKegiatan(@Header("Authorization") token: String): Call<AllKegiatanResponse>
 
     @GET("pegawai/riwayat-presensi")
     fun getRiwayatPresensi(@Header("Authorization") token: String): Call<PresensiResponse>

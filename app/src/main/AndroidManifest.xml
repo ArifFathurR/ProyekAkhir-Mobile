@@ -39,6 +39,7 @@
         <activity android:name=".Presensi"/>
         <activity android:name=".IsiPresensiActivity"/>
         <activity android:name=".HistoryPresensi"/>
+        <activity android:name=".KegiatanSelesai"/>
     </application>
 
 </manifest>
