@@ -1,14 +1,20 @@
 package com.example.proyekakhir.model
 
-data class PresensiRequest(
-    val penerima_undangan_id: Int,
-    val ttd: String, // Base64 encoded signature
-    val latitude: Double,
-    val longitude: Double
-)
+import com.google.gson.annotations.SerializedName
 
 data class PresensiResponse(
-    val status: Boolean,
-    val message: String,
-    val data: Any?
+    @SerializedName("success") val success: Boolean,
+    @SerializedName("data") val data: List<Presensi>
+)
+
+data class Presensi(
+    @SerializedName("id") val id: Int?,
+    @SerializedName("nama_kegiatan") val namaKegiatan: String?,
+    @SerializedName("sub_kegiatan") val subKegiatan: String?,
+    @SerializedName("tanggal") val tanggal: String?,
+    @SerializedName("waktu_presensi") val waktuPresensi: String?,
+    @SerializedName("ttd") val ttd: String?,
+    @SerializedName("status_kehadiran") val statusKehadiran: String?,
+    @SerializedName("latitude") val latitude: Double?,
+    @SerializedName("longitude") val longitude: Double?
 )

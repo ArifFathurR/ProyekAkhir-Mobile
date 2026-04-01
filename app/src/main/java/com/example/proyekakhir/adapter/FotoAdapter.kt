@@ -1,4 +1,4 @@
-package com.example.proyekakhir
+package com.example.proyekakhir.adapter
 
 import android.net.Uri
 import android.view.LayoutInflater

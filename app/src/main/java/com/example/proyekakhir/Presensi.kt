@@ -40,6 +40,10 @@ class Presensi : AppCompatActivity() {
             finish()
         }
 
+        binding.historyPresensi.setOnClickListener {
+            startActivity(Intent(this, HistoryPresensi::class.java))
+        }
+
         // Setup RecyclerView
         adapter = PresensiAdapter(emptyList()) { kegiatan ->
             // Klik tombol presensi

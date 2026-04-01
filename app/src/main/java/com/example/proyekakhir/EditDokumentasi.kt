@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.proyekakhir.adapter.FotoAdapter
 import com.example.proyekakhir.api.ApiClient
 import com.example.proyekakhir.databinding.EditDokumentasiKegiatanBinding
 import com.example.proyekakhir.model.Dokumentasi
@@ -16,7 +17,6 @@ import com.example.proyekakhir.model.DokumentasiResponse
 import com.example.proyekakhir.model.DropdownDokumentasiResponse
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Call

@@ -1,6 +1,7 @@
 package com.example.proyekakhir.api
 import com.example.proyekakhir.auth.LoginRequest
 import com.example.proyekakhir.auth.LoginResponse
+import com.example.proyekakhir.model.AllKegiatanResponse
 import com.example.proyekakhir.model.DetailDokumentasiResponse
 import retrofit2.Call
 import retrofit2.http.*
@@ -9,6 +10,7 @@ import com.example.proyekakhir.model.KegiatanResponse
 import com.example.proyekakhir.model.DokumentasiResponse
 import com.example.proyekakhir.model.DokumentasiSelesaiResponse
 import com.example.proyekakhir.model.DropdownDokumentasiResponse
+import com.example.proyekakhir.model.PresensiResponse
 import com.example.proyekakhir.model.TtdResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -92,5 +94,11 @@ interface ApiService {
         @Field("latitude") latitude: Double?,
         @Field("longitude") longitude: Double?
     ): Call<TtdResponse>
+
+    @GET("pegawai/semua-kegiatan")
+    fun getAllKegiatan(@Header("Authorization") token: String): Call<AllKegiatanResponse>
+
+    @GET("pegawai/riwayat-presensi")
+    fun getRiwayatPresensi(@Header("Authorization") token: String): Call<PresensiResponse>
 
 }

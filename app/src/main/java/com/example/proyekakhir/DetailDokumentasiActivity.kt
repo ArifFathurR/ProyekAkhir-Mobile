@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.proyekakhir.adapter.FotoAdapterDetail
 import com.example.proyekakhir.api.ApiClient
 import com.example.proyekakhir.databinding.DetailDokumentasiKegiatanBinding
 import com.example.proyekakhir.databinding.DialogPreviewFotoBinding

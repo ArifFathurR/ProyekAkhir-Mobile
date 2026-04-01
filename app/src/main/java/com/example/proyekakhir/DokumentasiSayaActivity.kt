@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.proyekakhir.adapter.DokumentasiSayaAdapter
 import com.example.proyekakhir.api.ApiClient
 import com.example.proyekakhir.auth.LoginActivity
 import com.example.proyekakhir.databinding.DokumentasiKegiatanSayaBinding

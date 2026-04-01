@@ -1,9 +1,10 @@
-package com.example.proyekakhir
+package com.example.proyekakhir.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.proyekakhir.R
 import com.example.proyekakhir.api.ApiClient
 import com.example.proyekakhir.databinding.ItemFotoDetailBinding
 import com.example.proyekakhir.model.FotoDetail

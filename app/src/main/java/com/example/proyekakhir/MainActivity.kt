@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.proyekakhir.adapter.KegiatanAdapter
 import com.example.proyekakhir.api.ApiClient
 import com.example.proyekakhir.auth.LoginActivity
 import com.example.proyekakhir.databinding.ActivityMainBinding

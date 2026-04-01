@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginVertical="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    app:cardBackgroundColor="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Header: Kehadiran : Masuk + Waktu -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="14dp">
+
+            <LinearLayout
+                android:id="@+id/layoutHeaderLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+
+
+                <TextView
+                    android:id="@+id/Judul_undangan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="Rapat Finalisasi FGD"
+                    android:textSize="14sp"
+                    android:textColor="#212121"
+                    android:fontFamily="sans-serif-medium" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvWaktuMasuk"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:text="07.35 WIB"
+                android:textSize="14sp"
+                android:textColor="#1565C0"
+                android:fontFamily="sans-serif-medium" />
+
+        </RelativeLayout>
+
+        <!-- Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#EEEEEE" />
+
+        <!-- Body: Foto + Info -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp">
+
+            <!-- Foto Profil -->
+            <ImageView
+                android:id="@+id/ivttd"
+                android:layout_width="72dp"
+                android:layout_height="72dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher_foreground"
+                android:contentDescription="Foto profil" />
+
+            <!-- Info Detail -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="14dp">
+
+                <!-- Waktu Laporan -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Waktu Laporan :"
+                    android:textSize="11sp"
+                    android:textColor="#9E9E9E" />
+
+                <TextView
+                    android:id="@+id/tvWaktuAbsensi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="03 Februari 2024, 07.35 WIB"
+                    android:textSize="13sp"
+                    android:textColor="#212121"
+                    android:fontFamily="sans-serif-medium" />
+
+                <!-- Lokasi -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Lokasi :"
+                    android:textSize="11sp"
+                    android:textColor="#9E9E9E" />
+
+                <TextView
+                    android:id="@+id/tvLokasi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="Kantor BKPP Kuansing"
+                    android:textSize="13sp"
+                    android:textColor="#212121"
+                    android:fontFamily="sans-serif-medium" />
+
+                <!-- Keterangan -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Keterangan :"
+                    android:textSize="11sp"
+                    android:textColor="#9E9E9E" />
+
+                <TextView
+                    android:id="@+id/tvKeterangan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="-"
+                    android:textSize="13sp"
+                    android:textColor="#212121" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#EEEEEE" />
+
+        <!-- Footer: Keterlambatan + Status -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_centerVertical="true">
+
+
+                <TextView
+                    android:id="@+id/tvKeterlambatan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="Keterlambatan : 05 Menit"
+                    android:textSize="13sp"
+                    android:textColor="#212121" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvStatusKehadiran"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:text="hadir"
+                android:textSize="12sp"
+                android:textColor="@color/white"
+                android:fontFamily="sans-serif-medium"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="8dp"
+                android:background="@color/btn_color" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
