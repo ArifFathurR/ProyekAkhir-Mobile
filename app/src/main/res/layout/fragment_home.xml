@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue"
+
+    >
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="56dp"
+        android:layout_height="54dp"
+        android:layout_margin="20dp"
+        android:src="@drawable/logo_bps"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tx_halo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:text="Hallo !,"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tx_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/tx_halo" />
+
+    <!-- Icon Profile kanan atas -->
+    <ImageView
+        android:id="@+id/btn_logout"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_margin="20dp"
+        android:src="@drawable/profile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="250dp"
+        android:background="@drawable/bg_main" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="140dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tx_username">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_margin="20dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/btn_buat_dokumentasi"
+                android:layout_width="85dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="52dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    app:cardBackgroundColor="@color/soft_blue"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="0dp">
+                    <ImageView
+                        android:layout_width="21dp"
+                        android:layout_height="19dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_dokumentasi" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Buat Dokumentasi"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btn_presensi"
+                android:layout_width="85dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="52dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    app:cardBackgroundColor="@color/soft_green"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="0dp">
+                    <ImageView
+                        android:layout_width="21dp"
+                        android:layout_height="19dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_presensi" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Presensi"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btn_lihat_dokumentasi"
+                android:layout_width="85dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="52dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    app:cardBackgroundColor="@color/soft_orange"
+                    app:cardCornerRadius="5dp"
+                    app:cardElevation="0dp">
+                    <ImageView
+                        android:layout_width="21dp"
+                        android:layout_height="19dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_lihat_dokumentasi" />
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Lihat Dokumentasi"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tx_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:text="Daftar Kegiatan Saya"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_view" />
+
+    <LinearLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tx_2">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/tab_akan_datang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            app:cardBackgroundColor="#E3F2FD"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="0dp">
+            <TextView
+                android:id="@+id/tv_akan_datang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:paddingHorizontal="8dp"
+                android:text="Akan datang"
+                android:textColor="#1976D2" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/tab_selesai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="#F5F5F5"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="0dp">
+            <TextView
+                android:id="@+id/tv_selesai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:paddingHorizontal="8dp"
+                android:text="Selesai"
+                android:textColor="#757575" />
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tab_layout"
+        tools:listitem="@layout/item_kegiatan" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
