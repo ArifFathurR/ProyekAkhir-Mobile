@@ -1,48 +1,49 @@
-package com.example.proyekakhir
+package com.example.proyekakhir.ui.semua_dokumentasi
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.proyekakhir.adapter.KegiatanAdapter
 import com.example.proyekakhir.api.ApiClient
 import com.example.proyekakhir.auth.LoginActivity
-import com.example.proyekakhir.databinding.DokumentasiKegiatanBinding
-import com.example.proyekakhir.model.DokumentasiSelesaiResponse
+import com.example.proyekakhir.databinding.KegiatanSelesaiBinding
+import com.example.proyekakhir.model.KegiatanResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class LihatDokumentasi : AppCompatActivity() {
-    private lateinit var binding: DokumentasiKegiatanBinding
-    private lateinit var adapter: LihatDokumentasiAdapter
+class KegiatanSelesai : AppCompatActivity() {
+    private lateinit var binding: KegiatanSelesaiBinding
+    private lateinit var adapter: KegiatanAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DokumentasiKegiatanBinding.inflate(layoutInflater)
+        binding = KegiatanSelesaiBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.btnKembali.setOnClickListener { finish() }
 
-        // Terima id dari KegiatanSelesai (key "id" sesuai yang dikirim)
-        val id = intent.getIntExtra("id", -1)
-        if (id == -1) {
-            Toast.makeText(this, "ID tidak ditemukan", Toast.LENGTH_SHORT).show()
-            finish()
-            return
-        }
-
         setupRecyclerView()
-        fetchDokumentasiSelesai(id)
+        fetchKegiatanSelesai()
     }
 
     private fun setupRecyclerView() {
-        adapter = LihatDokumentasiAdapter()
+        adapter = KegiatanAdapter(
+            emptyList(),
+            onUndanganClick = { /* tidak dipakai di tab selesai */ },
+            onDetailClick = { id ->
+                val intent = Intent(this, LihatDokumentasi::class.java)
+                intent.putExtra("id", id) // kirim id dari model Kegiatan
+                startActivity(intent)
+            }
+        )
         binding.recylerView.layoutManager = LinearLayoutManager(this)
         binding.recylerView.adapter = adapter
     }
 
-    private fun fetchDokumentasiSelesai(id: Int) {
+    private fun fetchKegiatanSelesai() {
         val shared = getSharedPreferences("APP", MODE_PRIVATE)
         val token = shared.getString("TOKEN", null)
 
@@ -53,37 +54,35 @@ class LihatDokumentasi : AppCompatActivity() {
             return
         }
 
-        ApiClient.instance.getDokumentasiSelesai("Bearer $token", id)
-            .enqueue(object : Callback<DokumentasiSelesaiResponse> {
+        ApiClient.instance.getKegiatanSelesai("Bearer $token")
+            .enqueue(object : Callback<KegiatanResponse> {
                 override fun onResponse(
-                    call: Call<DokumentasiSelesaiResponse>,
-                    response: Response<DokumentasiSelesaiResponse>
+                    call: Call<KegiatanResponse>,
+                    response: Response<KegiatanResponse>
                 ) {
                     if (response.isSuccessful) {
-                        val list = response.body()?.dokumentasi
-                            ?.sortedByDescending { it.id } ?: emptyList()
-
-                        adapter.updateData(list)
+                        val list = response.body()?.kegiatan ?: emptyList()
+                        adapter.updateData(list, isSelesaiTab = true)
 
                         if (list.isEmpty()) {
                             Toast.makeText(
-                                this@LihatDokumentasi,
-                                "Belum ada dokumentasi selesai",
+                                this@KegiatanSelesai,
+                                "Belum ada kegiatan selesai",
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
                     } else {
                         Toast.makeText(
-                            this@LihatDokumentasi,
+                            this@KegiatanSelesai,
                             "Gagal memuat data (${response.code()})",
                             Toast.LENGTH_SHORT
                         ).show()
                     }
                 }
 
-                override fun onFailure(call: Call<DokumentasiSelesaiResponse>, t: Throwable) {
+                override fun onFailure(call: Call<KegiatanResponse>, t: Throwable) {
                     Toast.makeText(
-                        this@LihatDokumentasi,
+                        this@KegiatanSelesai,
                         "Error: ${t.localizedMessage}",
                         Toast.LENGTH_SHORT
                     ).show()

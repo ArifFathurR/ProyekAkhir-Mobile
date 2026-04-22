@@ -1,4 +1,4 @@
-package com.example.proyekakhir
+package com.example.proyekakhir.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.proyekakhir.adapter.PresensiAdapter
+import com.example.proyekakhir.adapter.PresensiListAdapter
 import com.example.proyekakhir.api.ApiClient
 import com.example.proyekakhir.auth.LoginActivity
 import com.example.proyekakhir.databinding.FragmentProfilBinding
@@ -21,7 +21,7 @@ class Profil : Fragment() {
 
     private var _binding: FragmentProfilBinding? = null
     private val binding get() = _binding!!
-    private lateinit var adapter: PresensiAdapter
+    private lateinit var adapter: PresensiListAdapter
     private var token: String? = null
 
     override fun onCreateView(
@@ -50,7 +50,7 @@ class Profil : Fragment() {
     }
 
     private fun setupAdapter() {
-        adapter = PresensiAdapter(emptyList())
+        adapter = PresensiListAdapter(emptyList())
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerView.adapter = adapter
     }
@@ -61,7 +61,7 @@ class Profil : Fragment() {
                 override fun onResponse(call: Call<PresensiResponse>, response: Response<PresensiResponse>) {
                     if (response.isSuccessful) {
                         val list = response.body()?.data ?: emptyList()
-                        adapter = PresensiAdapter(list)
+                        adapter = PresensiListAdapter(list)
                         binding.recyclerView.adapter = adapter
                         if (list.isEmpty()) {
                             Toast.makeText(requireContext(), "Belum ada riwayat presensi", Toast.LENGTH_SHORT).show()

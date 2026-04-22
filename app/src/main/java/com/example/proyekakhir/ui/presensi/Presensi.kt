@@ -1,14 +1,14 @@
-package com.example.proyekakhir
+package com.example.proyekakhir.ui.presensi
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.proyekakhir.adapter.PresensiAdapter
 import com.example.proyekakhir.api.ApiClient
 import com.example.proyekakhir.auth.LoginActivity
 import com.example.proyekakhir.databinding.PresensiBinding
-import com.example.proyekakhir.model.Kegiatan
 import com.example.proyekakhir.model.KegiatanResponse
 import retrofit2.Call
 import retrofit2.Callback

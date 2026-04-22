@@ -1,11 +1,13 @@
-package com.example.proyekakhir
+package com.example.proyekakhir.adapter
 
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.proyekakhir.R
 import com.example.proyekakhir.databinding.ItemDokumentasiKegiatanBinding
 import com.example.proyekakhir.model.DokumentasiSelesai
+import com.example.proyekakhir.ui.semua_dokumentasi.LihatDokumentasiDetail
 import com.squareup.picasso.Picasso
 
 class LihatDokumentasiAdapter :

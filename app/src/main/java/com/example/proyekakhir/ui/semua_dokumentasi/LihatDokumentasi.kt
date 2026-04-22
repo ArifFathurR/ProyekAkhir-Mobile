@@ -1,42 +1,49 @@
-package com.example.proyekakhir
+package com.example.proyekakhir.ui.semua_dokumentasi
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.proyekakhir.adapter.PresensiAdapter
+import com.example.proyekakhir.adapter.LihatDokumentasiAdapter
 import com.example.proyekakhir.api.ApiClient
 import com.example.proyekakhir.auth.LoginActivity
-import com.example.proyekakhir.databinding.HistoryPresensiBinding
-import com.example.proyekakhir.model.PresensiResponse
+import com.example.proyekakhir.databinding.DokumentasiKegiatanBinding
+import com.example.proyekakhir.model.DokumentasiSelesaiResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HistoryPresensi : AppCompatActivity() {
-
-    private lateinit var binding: HistoryPresensiBinding
-    private lateinit var adapter: PresensiAdapter
+class LihatDokumentasi : AppCompatActivity() {
+    private lateinit var binding: DokumentasiKegiatanBinding
+    private lateinit var adapter: LihatDokumentasiAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = HistoryPresensiBinding.inflate(layoutInflater)
+        binding = DokumentasiKegiatanBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.btnKembali.setOnClickListener { finish() }
 
+        // Terima id dari KegiatanSelesai (key "id" sesuai yang dikirim)
+        val id = intent.getIntExtra("id", -1)
+        if (id == -1) {
+            Toast.makeText(this, "ID tidak ditemukan", Toast.LENGTH_SHORT).show()
+            finish()
+            return
+        }
+
         setupRecyclerView()
-        fetchRiwayatPresensi()
+        fetchDokumentasiSelesai(id)
     }
 
     private fun setupRecyclerView() {
-        adapter = PresensiAdapter(emptyList())
+        adapter = LihatDokumentasiAdapter()
         binding.recylerView.layoutManager = LinearLayoutManager(this)
         binding.recylerView.adapter = adapter
     }
 
-    private fun fetchRiwayatPresensi() {
+    private fun fetchDokumentasiSelesai(id: Int) {
         val shared = getSharedPreferences("APP", MODE_PRIVATE)
         val token = shared.getString("TOKEN", null)
 
@@ -47,37 +54,37 @@ class HistoryPresensi : AppCompatActivity() {
             return
         }
 
-        ApiClient.instance.getRiwayatPresensi("Bearer $token")
-            .enqueue(object : Callback<PresensiResponse> {
+        ApiClient.instance.getDokumentasiSelesai("Bearer $token", id)
+            .enqueue(object : Callback<DokumentasiSelesaiResponse> {
                 override fun onResponse(
-                    call: Call<PresensiResponse>,
-                    response: Response<PresensiResponse>
+                    call: Call<DokumentasiSelesaiResponse>,
+                    response: Response<DokumentasiSelesaiResponse>
                 ) {
                     if (response.isSuccessful) {
-                        val list = response.body()?.data ?: emptyList()
+                        val list = response.body()?.dokumentasi
+                            ?.sortedByDescending { it.id } ?: emptyList()
 
-                        adapter = PresensiAdapter(list)
-                        binding.recylerView.adapter = adapter
+                        adapter.updateData(list)
 
                         if (list.isEmpty()) {
                             Toast.makeText(
-                                this@HistoryPresensi,
-                                "Belum ada riwayat presensi",
+                                this@LihatDokumentasi,
+                                "Belum ada dokumentasi selesai",
                                 Toast.LENGTH_SHORT
                             ).show()
                         }
                     } else {
                         Toast.makeText(
-                            this@HistoryPresensi,
+                            this@LihatDokumentasi,
                             "Gagal memuat data (${response.code()})",
                             Toast.LENGTH_SHORT
                         ).show()
                     }
                 }
 
-                override fun onFailure(call: Call<PresensiResponse>, t: Throwable) {
+                override fun onFailure(call: Call<DokumentasiSelesaiResponse>, t: Throwable) {
                     Toast.makeText(
-                        this@HistoryPresensi,
+                        this@LihatDokumentasi,
                         "Error: ${t.localizedMessage}",
                         Toast.LENGTH_SHORT
                     ).show()

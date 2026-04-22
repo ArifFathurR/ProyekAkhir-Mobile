@@ -1,4 +1,4 @@
-package com.example.proyekakhir
+package com.example.proyekakhir.ui.semua_dokumentasi
 
 import android.content.Intent
 import android.net.Uri
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.proyekakhir.adapter.FotoAdapterDetail_lihat
 import com.example.proyekakhir.databinding.DetailDokumentasiKegiatanBinding
 
 class LihatDokumentasiDetail : AppCompatActivity() {

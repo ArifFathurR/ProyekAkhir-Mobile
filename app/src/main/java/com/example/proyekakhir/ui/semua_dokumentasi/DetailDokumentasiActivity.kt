@@ -1,4 +1,4 @@
-package com.example.proyekakhir
+package com.example.proyekakhir.ui.semua_dokumentasi
 
 import android.app.Dialog
 import android.app.DownloadManager
@@ -15,6 +15,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.proyekakhir.R
 import com.example.proyekakhir.adapter.FotoAdapterDetail
 import com.example.proyekakhir.api.ApiClient
 import com.example.proyekakhir.databinding.DetailDokumentasiKegiatanBinding

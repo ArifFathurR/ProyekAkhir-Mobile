@@ -1,4 +1,4 @@
-package com.example.proyekakhir
+package com.example.proyekakhir.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

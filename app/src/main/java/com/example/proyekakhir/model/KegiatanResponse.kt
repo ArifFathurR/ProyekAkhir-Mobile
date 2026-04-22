@@ -9,6 +9,7 @@ data class Kegiatan(
     val nama_kegiatan: String,
     val sub_kegiatan: String,
     val tanggal: String,
+    val waktu: String,
     val file_undangan: String,
     val status_penerima: String
 )

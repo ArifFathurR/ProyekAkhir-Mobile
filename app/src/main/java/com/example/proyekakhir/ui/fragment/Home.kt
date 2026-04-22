@@ -1,4 +1,4 @@
-package com.example.proyekakhir
+package com.example.proyekakhir.ui.fragment
 
 import android.content.Intent
 import android.net.Uri
@@ -10,10 +10,10 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.proyekakhir.DokumentasiSayaActivity
-import com.example.proyekakhir.KegiatanSelesai
-import com.example.proyekakhir.LihatDokumentasi
-import com.example.proyekakhir.Presensi
+import com.example.proyekakhir.ui.dokumentasi.DokumentasiSayaActivity
+import com.example.proyekakhir.ui.semua_dokumentasi.KegiatanSelesai
+import com.example.proyekakhir.ui.semua_dokumentasi.LihatDokumentasi
+import com.example.proyekakhir.ui.presensi.Presensi
 import com.example.proyekakhir.R
 import com.example.proyekakhir.adapter.KegiatanAdapter
 import com.example.proyekakhir.api.ApiClient

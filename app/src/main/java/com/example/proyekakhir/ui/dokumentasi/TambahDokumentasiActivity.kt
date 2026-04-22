@@ -1,4 +1,4 @@
-package com.example.proyekakhir
+package com.example.proyekakhir.ui.dokumentasi
 
 import android.net.Uri
 import android.os.Bundle

@@ -5,6 +5,10 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
 
 
     <application
@@ -18,6 +22,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyekAkhir"
         tools:targetApi="31">
+
+        <receiver android:name=".notifikasi.NotificationReceiver"/>
+        <receiver android:name=".notifikasi.BootReceiver"
+            android:enabled="true"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+
         <activity
             android:name=".auth.LoginActivity"
             android:exported="true">
@@ -28,18 +43,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true"/>
-        <activity android:name=".DokumentasiSayaActivity"/>
-        <activity android:name=".TambahDokumentasiActivity"/>
-        <activity android:name=".EditDokumentasiActivity"/>
-        <activity android:name=".DetailDokumentasiActivity"/>
-        <activity android:name=".LihatDokumentasi"/>
-        <activity android:name=".LihatDokumentasiDetail"/>
-        <activity android:name=".Presensi"/>
-        <activity android:name=".IsiPresensiActivity"/>
-        <activity android:name=".HistoryPresensi"/>
-        <activity android:name=".KegiatanSelesai"/>
+        <activity android:name=".ui.dokumentasi.DokumentasiSayaActivity"/>
+        <activity android:name=".ui.dokumentasi.TambahDokumentasiActivity"/>
+        <activity android:name=".ui.dokumentasi.EditDokumentasiActivity"/>
+        <activity android:name=".ui.semua_dokumentasi.DetailDokumentasiActivity"/>
+        <activity android:name=".ui.semua_dokumentasi.LihatDokumentasi"/>
+        <activity android:name=".ui.semua_dokumentasi.LihatDokumentasiDetail"/>
+        <activity android:name=".ui.presensi.Presensi"/>
+        <activity android:name=".ui.presensi.IsiPresensiActivity"/>
+        <activity android:name=".ui.presensi.HistoryPresensi"/>
+        <activity android:name=".ui.semua_dokumentasi.KegiatanSelesai"/>
 
     </application>
 
