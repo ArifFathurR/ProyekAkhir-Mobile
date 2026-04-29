@@ -34,13 +34,17 @@ class LihatDokumentasi : AppCompatActivity() {
         }
 
         setupRecyclerView()
+        binding.swipeRefresh.isRefreshing = true
         fetchDokumentasiSelesai(id)
+        binding.swipeRefresh.setOnRefreshListener {
+            fetchDokumentasiSelesai(id)
+        }
     }
 
     private fun setupRecyclerView() {
         adapter = LihatDokumentasiAdapter()
-        binding.recylerView.layoutManager = LinearLayoutManager(this)
-        binding.recylerView.adapter = adapter
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.adapter = adapter
     }
 
     private fun fetchDokumentasiSelesai(id: Int) {
@@ -49,17 +53,24 @@ class LihatDokumentasi : AppCompatActivity() {
 
         if (token.isNullOrEmpty()) {
             Toast.makeText(this, "Token tidak ditemukan, silakan login kembali", Toast.LENGTH_SHORT).show()
+            binding.swipeRefresh.isRefreshing = false
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
             return
         }
 
+        // mulai loading
+        binding.swipeRefresh.isRefreshing = true
+
         ApiClient.instance.getDokumentasiSelesai("Bearer $token", id)
             .enqueue(object : Callback<DokumentasiSelesaiResponse> {
+
                 override fun onResponse(
                     call: Call<DokumentasiSelesaiResponse>,
                     response: Response<DokumentasiSelesaiResponse>
                 ) {
+                    binding.swipeRefresh.isRefreshing = false
+
                     if (response.isSuccessful) {
                         val list = response.body()?.dokumentasi
                             ?.sortedByDescending { it.id } ?: emptyList()
@@ -83,6 +94,8 @@ class LihatDokumentasi : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<DokumentasiSelesaiResponse>, t: Throwable) {
+                    binding.swipeRefresh.isRefreshing = false
+
                     Toast.makeText(
                         this@LihatDokumentasi,
                         "Error: ${t.localizedMessage}",

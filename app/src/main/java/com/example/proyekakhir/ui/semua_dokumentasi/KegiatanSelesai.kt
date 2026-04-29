@@ -27,6 +27,13 @@ class KegiatanSelesai : AppCompatActivity() {
 
         setupRecyclerView()
         fetchKegiatanSelesai()
+        // tampilkan loading pertama kali
+        binding.swipeRefresh.isRefreshing = true
+        fetchKegiatanSelesai()
+
+        binding.swipeRefresh.setOnRefreshListener {
+            fetchKegiatanSelesai()
+        }
     }
 
     private fun setupRecyclerView() {
@@ -39,8 +46,8 @@ class KegiatanSelesai : AppCompatActivity() {
                 startActivity(intent)
             }
         )
-        binding.recylerView.layoutManager = LinearLayoutManager(this)
-        binding.recylerView.adapter = adapter
+        binding.recyclerView.layoutManager = LinearLayoutManager(this)
+        binding.recyclerView.adapter = adapter
     }
 
     private fun fetchKegiatanSelesai() {
@@ -49,17 +56,24 @@ class KegiatanSelesai : AppCompatActivity() {
 
         if (token.isNullOrEmpty()) {
             Toast.makeText(this, "Token tidak ditemukan, silakan login kembali", Toast.LENGTH_SHORT).show()
+            binding.swipeRefresh.isRefreshing = false
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
             return
         }
 
+        // Saat mulai refresh
+        binding.swipeRefresh.isRefreshing = true
+
         ApiClient.instance.getKegiatanSelesai("Bearer $token")
             .enqueue(object : Callback<KegiatanResponse> {
+
                 override fun onResponse(
                     call: Call<KegiatanResponse>,
                     response: Response<KegiatanResponse>
                 ) {
+                    binding.swipeRefresh.isRefreshing = false
+
                     if (response.isSuccessful) {
                         val list = response.body()?.kegiatan ?: emptyList()
                         adapter.updateData(list, isSelesaiTab = true)
@@ -81,6 +95,8 @@ class KegiatanSelesai : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<KegiatanResponse>, t: Throwable) {
+                    binding.swipeRefresh.isRefreshing = false
+
                     Toast.makeText(
                         this@KegiatanSelesai,
                         "Error: ${t.localizedMessage}",

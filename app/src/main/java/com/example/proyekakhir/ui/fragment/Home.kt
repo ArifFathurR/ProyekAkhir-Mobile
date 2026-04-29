@@ -29,6 +29,7 @@ class Home : Fragment() {
     private val binding get() = _binding!!
     private lateinit var adapter: KegiatanAdapter
     private var token: String? = null
+    private var isTabAkanDatang = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,13 +65,23 @@ class Home : Fragment() {
         }
 
         binding.tabAkanDatang.setOnClickListener {
+            isTabAkanDatang = true
             setActiveTab(true)
             fetchKegiatan()
         }
 
         binding.tabSelesai.setOnClickListener {
+            isTabAkanDatang = false
             setActiveTab(false)
             fetchKegiatanSelesai()
+        }
+
+        // SwipeRefresh listener
+        binding.swipeRefresh.setColorSchemeColors(
+            ContextCompat.getColor(requireContext(), R.color.blue)
+        )
+        binding.swipeRefresh.setOnRefreshListener {
+            if (isTabAkanDatang) fetchKegiatan() else fetchKegiatanSelesai()
         }
     }
 
@@ -103,9 +114,10 @@ class Home : Fragment() {
     }
 
     private fun fetchKegiatan() {
-        ApiClient.instance.getKegiatan("Bearer $token")
+        ApiClient.instance.getKegiatanAkanDatang("Bearer $token")
             .enqueue(object : Callback<KegiatanResponse> {
                 override fun onResponse(call: Call<KegiatanResponse>, response: Response<KegiatanResponse>) {
+                    binding.swipeRefresh.isRefreshing = false  // stop animasi
                     if (response.isSuccessful) {
                         adapter.updateData(response.body()?.kegiatan ?: emptyList(), false)
                     } else {
@@ -113,6 +125,7 @@ class Home : Fragment() {
                     }
                 }
                 override fun onFailure(call: Call<KegiatanResponse>, t: Throwable) {
+                    binding.swipeRefresh.isRefreshing = false  // stop animasi
                     Toast.makeText(requireContext(), "Error: ${t.message}", Toast.LENGTH_SHORT).show()
                 }
             })
@@ -122,6 +135,7 @@ class Home : Fragment() {
         ApiClient.instance.getKegiatanSelesai("Bearer $token")
             .enqueue(object : Callback<KegiatanResponse> {
                 override fun onResponse(call: Call<KegiatanResponse>, response: Response<KegiatanResponse>) {
+                    binding.swipeRefresh.isRefreshing = false  // stop animasi
                     if (response.isSuccessful) {
                         adapter.updateData(response.body()?.kegiatan ?: emptyList(), true)
                     } else {
@@ -129,6 +143,7 @@ class Home : Fragment() {
                     }
                 }
                 override fun onFailure(call: Call<KegiatanResponse>, t: Throwable) {
+                    binding.swipeRefresh.isRefreshing = false  // stop animasi
                     Toast.makeText(requireContext(), "Error: ${t.message}", Toast.LENGTH_SHORT).show()
                 }
             })

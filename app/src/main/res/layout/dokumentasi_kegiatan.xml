@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="30dp"
-            android:text="Buat Dokumentasi Kegiatan"
+            android:text="Detaail Dokumentasi Kegiatan"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="17sp"
@@ -41,14 +41,23 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyler_view"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
+        android:layout_marginHorizontal="20dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="20dp"
-        tools:listitem="@layout/item_dokumentasi_kegiatan"
+        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/top" />
+        app:layout_constraintTop_toBottomOf="@+id/top">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="20dp"
+            tools:listitem="@layout/item_dokumentasi_kegiatan_saya" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

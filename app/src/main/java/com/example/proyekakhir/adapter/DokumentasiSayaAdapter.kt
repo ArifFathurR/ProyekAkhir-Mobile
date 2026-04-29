@@ -14,7 +14,7 @@ class DokumentasiSayaAdapter(
     private val onDeleteClick: (Dokumentasi, Int) -> Unit // kirim id + posisi
 ) : RecyclerView.Adapter<DokumentasiSayaAdapter.ViewHolder>() {
 
-    private val baseStorageUrl = "http://10.0.2.2:8000/storage/"
+    private val baseStorageUrl = "https://cloudslabs.my.id/storage/"
 
     inner class ViewHolder(private val binding: ItemDokumentasiKegiatanSayaBinding) :
         RecyclerView.ViewHolder(binding.root) {

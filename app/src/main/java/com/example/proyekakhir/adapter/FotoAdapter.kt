@@ -36,7 +36,7 @@ class FotoAdapter(
                 // Jika item mengandung "#", ambil bagian setelahnya (path sebenarnya)
                 val path = if (item.contains("#")) item.substringAfter("#") else item
                 val fullUrl = if (path.startsWith("http")) path
-                else "http://10.0.2.2:8000/storage/$path"
+                else "https://cloudslabs.my.id/storage/$path"
 
                 Glide.with(holder.itemView.context)
                     .load(fullUrl)

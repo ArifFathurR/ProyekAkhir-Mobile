@@ -96,8 +96,8 @@ interface ApiService {
         @Field("longitude") longitude: Double?
     ): Call<TtdResponse>
 
-//    @GET("pegawai/semua-kegiatan")
-//    fun getAllKegiatan(@Header("Authorization") token: String): Call<AllKegiatanResponse>
+    @GET("pegawai/kegiatan-akandatang")
+    fun getKegiatanAkanDatang(@Header("Authorization") token: String): Call<KegiatanResponse>
 
     @GET("pegawai/riwayat-presensi")
     fun getRiwayatPresensi(@Header("Authorization") token: String): Call<PresensiResponse>
