@@ -47,6 +47,7 @@ class CustomCalendarView @JvmOverloads constructor(
     private var cellWidth = 0f
     private val cellHeight = 80f
 
+
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         val width = MeasureSpec.getSize(widthMeasureSpec)
         cellWidth = width / 7f
